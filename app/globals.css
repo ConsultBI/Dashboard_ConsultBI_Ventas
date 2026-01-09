@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=League+Spartan:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-white: #FFFFFF;
+  --color-gray-light: #F5F6F8;
+  --color-gray-medium: #A0A4AB;
+  --color-primary: #1E2A45;
+  --color-secondary: #3E5D8F;
+  --color-tertiary: #6A8CAF;
+}
+
+body {
+  background-color: var(--color-gray-light);
+  color: var(--color-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 600;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(30, 42, 69, 0.1);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-tertiary);
+  opacity: 0.8;
+}
