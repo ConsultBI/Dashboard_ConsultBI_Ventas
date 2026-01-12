@@ -54,8 +54,8 @@ export function getClientesRecurrentes(pedidos: Order[], clientes: Client[]) {
 export function getKPIMetrics(pedidos: Order[]) {
     const totalVentas = pedidos.length;
     const facturacionTotal = pedidos.reduce((acc, curr) => acc + curr.Total, 0);
-    const totalGratuitos = pedidos.filter(p => p.Pedido_Gratuito === 'SI').length;
-    const totalPagos = totalVentas - totalGratuitos;
+    const totalGratuitos = pedidos.filter(p => p.Total === 0 && p.Pedido_Gratuito === 'SI').length;
+    const totalPagos = pedidos.filter(p => p.Total > 0 || p.Pedido_Gratuito === 'NO').length;
     const clientesUnicos = new Set(pedidos.map(p => p.ID_Cliente)).size;
 
     return {

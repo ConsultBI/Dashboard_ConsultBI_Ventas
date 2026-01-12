@@ -24,7 +24,7 @@ export async function getPedidos(): Promise<Order[]> {
         Metodo_Pago: record.get('Método de Pago') as string,
         Pedido_Gratuito: record.get('Pedido Gratuito (SI/NO)') as any,
         Newsletter: record.get('Newsletter (SI/NO)') as any,
-        Origen: record.get('Origen') as string,
+        Origen: (record.get('Origen') as string) === 'egi52.r.ag.d.sendibm3.com' ? 'Brevo' : (record.get('Origen') as string),
         Tipo_Dispositivo: record.get('Tipo Dispositivo') as any,
         Paginas_Sesion: Number(record.get('Páginas Sesión') || 0),
         Productos: record.get('Productos') as string[] || [],

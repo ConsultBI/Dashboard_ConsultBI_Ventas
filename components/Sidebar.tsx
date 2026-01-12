@@ -19,7 +19,7 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const navItems = [
+export const navItems = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
   { name: 'Ventas', href: '/ventas', icon: BarChart3 },
   { name: 'Clientes', href: '/clientes', icon: Users },
@@ -33,24 +33,24 @@ export default function Sidebar() {
 
   return (
     <aside className={cn(
-      "bg-cb-primary text-white h-screen transition-all duration-300 ease-in-out flex flex-col relative sticky top-0",
+      "bg-cb-primary text-white h-screen transition-all duration-300 ease-in-out flex flex-col relative sticky top-0 z-50 overflow-hidden hidden lg:flex",
       isCollapsed ? "w-20" : "w-64"
     )}>
       {/* Header / Logo */}
-      <div className="p-6 flex items-center gap-3">
-        <div className="w-10 h-10 bg-white rounded-lg p-1 flex-shrink-0 overflow-hidden">
-          <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
-        </div>
-        {!isCollapsed && <span className="font-spartan text-xl font-bold tracking-tight">ConsultBI</span>}
-        <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className={cn(
-            "p-2 hover:bg-cb-secondary rounded-lg transition-colors",
-            !isCollapsed && "ml-auto"
-          )}
-        >
-          {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-        </button>
+      <div className="p-6 flex flex-col items-center gap-6">
+        {isCollapsed ? (
+          <div className="w-12 h-12 bg-white rounded-full p-2 flex-shrink-0 flex items-center justify-center overflow-hidden">
+            <img src="https://consultbi.es/wp-content/uploads/2025/04/Logo-Original-ConsultBI-512-x-512-px.svg" alt="Logo" className="w-full h-full object-contain" />
+          </div>
+        ) : (
+          <div className="w-full px-2">
+            <img
+              src="https://consultbi.es/wp-content/uploads/2025/06/Logo-Texto-2000x1000-Blanco.png"
+              alt="ConsultBI"
+              className="w-full h-auto max-h-16 object-contain"
+            />
+          </div>
+        )}
       </div>
 
       {/* Navigation */}
@@ -78,13 +78,14 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* Footer */}
-      <div className="p-4 border-t border-cb-secondary/30">
-        {!isCollapsed && (
-          <div className="text-xs text-cb-gray-medium text-center">
-            v1.0.0 © ConsultBI
-          </div>
-        )}
+      {/* Footer / Toggle */}
+      <div className="p-4 border-t border-cb-secondary/30 flex justify-center">
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="p-2 hover:bg-cb-secondary rounded-lg transition-colors text-cb-gray-medium hover:text-white"
+        >
+          {isCollapsed ? <ChevronRight size={24} /> : <ChevronLeft size={24} />}
+        </button>
       </div>
     </aside>
   );
